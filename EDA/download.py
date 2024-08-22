@@ -7,7 +7,7 @@ url = "https://raw.githubusercontent.com/avnyadav/sensor-fault-detection/main/ap
 response = requests.get(url)
 
 # Save the content to a file
-with open("aps_failure_training_set1.csv", "wb") as file:
+with open("aps_failure_dataset.csv", "wb") as file:
     file.write(response.content)
 
 print("File downloaded successfully.")
