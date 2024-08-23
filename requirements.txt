@@ -1,4 +1,8 @@
-pymongo==4.2.0
+pymongo
 requests==2.32.3
+python-dotenv
+pandas
+scikit-learn
+
 
 -e .  # editable mode (we do not require every time ti install setup.py whenever we run requirement.txt when he find -e . it automatically add these packages in setp file)
