@@ -4,12 +4,8 @@ from sensor.utils import dump_csv_to_mongo
 import sys
 
 
-# def test_exception():
-#     try:
-#         logging.info("This is Error:- ")
-#         a = 1 / 0
-#     except Exception as e:
-#         raise SensorException(e, sys)
+
+
 
 
 if __name__ == "__main__":
