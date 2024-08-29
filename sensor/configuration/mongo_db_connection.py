@@ -3,13 +3,11 @@ import pymongo
 from sensor.constant.database import DATABASE_NAME
 import certifi
 ca = certifi.where()
-from sensor.constant.env_vairiable import MONGODB_URL_KEY
-import os
-import logging
-
+from sensor.constant.env_variable import MONGODB_URL_KEY
+import os 
+import logging 
 
 load_dotenv()
-
 class MongoDBClient:
     client = None
 
@@ -17,21 +15,16 @@ class MongoDBClient:
         try:
             if MongoDBClient.client is None:
                 mongo_db_url = os.getenv(MONGODB_URL_KEY)
+                logging.info(f"Retrieved MongoDB URL: {mongo_db_url}")
 
-                if not mongo_db_url:
-                    raise ValueError(f"Environment variable '{MONGODB_URL_KEY}' is not set or is empty.")
-
-                logging.info(f"Retrived MongoDB URL: {mongo_db_url}")
-                
                 if "localhost" in mongo_db_url:
                     MongoDBClient.client = pymongo.MongoClient(mongo_db_url)
                 else:
-                    MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca)
-            
+                    MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca)   #TLS/SSl 
+                
             self.client = MongoDBClient.client
             self.database = self.client[database_name]
             self.database_name = database_name
-                
         except Exception as e:
-            logging.error(f"Error while connecting to MongoDB: {e}")
-            raise 
+            logging.error(f"Error initializing MongoDB client: {e}")
+            raise
